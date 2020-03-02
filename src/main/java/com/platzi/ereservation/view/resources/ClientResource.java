@@ -21,6 +21,10 @@ import com.platzi.ereservation.business.services.ClientService;
 import com.platzi.ereservation.model.Client;
 import com.platzi.ereservation.view.resources.vo.ClientVO;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import net.bytebuddy.asm.Advice.This;
 
 /**
@@ -29,6 +33,7 @@ import net.bytebuddy.asm.Advice.This;
  */
 @RestController
 @RequestMapping("/api/client")
+@Api(tags = "client")
 public class ClientResource {
 
 	private final ClientService clientService;
@@ -38,6 +43,9 @@ public class ClientResource {
 	}
 
 	@PostMapping
+	@ApiOperation(value = "Create a client", notes = "Service to create a new Client")
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client created successfully"),
+			@ApiResponse(code = 400, message = "Invalid request")})
 	public ResponseEntity<Client> createClient(@RequestBody ClientVO clientVO) {
 		Client client = new Client();
 
@@ -51,6 +59,9 @@ public class ClientResource {
 	}
 
 	@PutMapping("/¨{identification}")
+	@ApiOperation(value = "Update a client", notes = "Service to update a Client")
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client updated successfully"),
+			@ApiResponse(code = 404, message = "Client not found")})
 	public ResponseEntity<Client> updateClient(@PathVariable("identification") String identification,
 			ClientVO clientVO) {
 
@@ -69,6 +80,9 @@ public class ClientResource {
 	}
 	
 	@DeleteMapping("/{identification}")
+	@ApiOperation(value = "Delete a client", notes = "Service to delete a Client")
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client delete successfully"),
+			@ApiResponse(code = 404, message = "Client not found")})
 	public void removeClient(@PathVariable("identification") String identification) {
 		Client client = this.clientService.findByIdentification(identification);
 		
@@ -78,6 +92,9 @@ public class ClientResource {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "List a clients", notes = "Service to list Clients")
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Clients found successfully"),
+			@ApiResponse(code = 404, message = "Clients not found")})
 	public ResponseEntity<List<Client>> findAll() {
 		return ResponseEntity.ok(this.clientService.findAll());
 	}
