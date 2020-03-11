@@ -44,8 +44,7 @@ public class ClientResource {
 	@ApiOperation(value = "Create a client", notes = "Service to create a new Client")
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Client created successfully"),
-			@ApiResponse(code = 400, message = "Invalid request")
-			})
+			@ApiResponse(code = 400, message = "Invalid request") })
 	public ResponseEntity<Client> createClient(@RequestBody ClientVO clientVO) {
 		Client client = new Client();
 
@@ -60,7 +59,8 @@ public class ClientResource {
 
 	@PutMapping("/{identification}")
 	@ApiOperation(value = "Update a client", notes = "Service to update a Client")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client updated successfully"),
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Client updated successfully"),
 			@ApiResponse(code = 404, message = "Client not found")})
 	public ResponseEntity<Client> updateClient(@PathVariable("identification") String identification,
 			ClientVO clientVO) {
@@ -81,8 +81,9 @@ public class ClientResource {
 	
 	@DeleteMapping("/{identification}")
 	@ApiOperation(value = "Delete a client", notes = "Service to delete a Client")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client delete successfully"),
-			@ApiResponse(code = 404, message = "Client not found")})
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Client delete successfully"),
+			@ApiResponse(code = 404, message = "Client not found") })
 	public void removeClient(@PathVariable("identification") String identification) {
 		Client client = this.clientService.findByIdentification(identification);
 		
@@ -92,9 +93,10 @@ public class ClientResource {
 	}
 	
 	@GetMapping
-	@ApiOperation(value = "List a clients", notes = "Service to list Clients")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Clients found successfully"),
-			@ApiResponse(code = 404, message = "Clients not found")})
+	@ApiOperation(value = "List clients", notes = "Service to list Clients")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Clients found successfully"),
+			@ApiResponse(code = 404, message = "Clients not found") })
 	public ResponseEntity<List<Client>> findAll() {
 		return ResponseEntity.ok(this.clientService.findAll());
 	}

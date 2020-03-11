@@ -1,4 +1,4 @@
-package com.platzi.ereservation.view.resources.vo;
+package com.platzi.ereservation.alternative;
 
 
 import static org.hamcrest.CoreMatchers.*;
@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import com.platzi.ereservation.util.Calculator;
+import com.platzi.ereservation.alternative.Calculator;
 
 class CalculatorTest {
 

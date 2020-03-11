@@ -1,4 +1,4 @@
-package com.platzi.ereservation.util;
+package com.platzi.ereservation.alternative;
 
 public class Calculator {
 
