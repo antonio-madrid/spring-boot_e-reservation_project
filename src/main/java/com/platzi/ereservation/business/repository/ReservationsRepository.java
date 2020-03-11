@@ -21,4 +21,6 @@ public interface ReservationsRepository extends JpaRepository<Reservation, Strin
 	@Query("Select r from Reservation r where r.reservationCheckin =:checkin and r.reservationCheckout =:checkout")
 	public List<Reservation> find(@Param("checkin")Date checkin, @Param("checkout")Date checkout);
 
+	public Reservation findByIdReservation(String idReservation);
+
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.platzi.ereservation.view.resources.vo;
 
 import lombok.Data;

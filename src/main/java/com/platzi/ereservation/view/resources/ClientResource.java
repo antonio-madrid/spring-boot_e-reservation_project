@@ -42,8 +42,10 @@ public class ClientResource {
 
 	@PostMapping
 	@ApiOperation(value = "Create a client", notes = "Service to create a new Client")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client created successfully"),
-			@ApiResponse(code = 400, message = "Invalid request")})
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Client created successfully"),
+			@ApiResponse(code = 400, message = "Invalid request")
+			})
 	public ResponseEntity<Client> createClient(@RequestBody ClientVO clientVO) {
 		Client client = new Client();
 
@@ -56,7 +58,7 @@ public class ClientResource {
 		return new ResponseEntity<>(this.clientService.create(client), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/¨{identification}")
+	@PutMapping("/{identification}")
 	@ApiOperation(value = "Update a client", notes = "Service to update a Client")
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Client updated successfully"),
 			@ApiResponse(code = 404, message = "Client not found")})
